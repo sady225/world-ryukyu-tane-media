@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="home-hero">
+  <h1 class="hero-title">{{ .Site.Params.description }}</h1>
+  <p class="hero-by">by 佐渡山 要 / Kaname Sadoyama</p>
+</div>
+
+<div class="series-grid">
+  {{ $seriesList := slice
+    (dict "slug" "series-a" "icon" "📚" "title" "子どもと学び" "desc" "沖縄の学習環境、進学の壁、不登校の現実")
+    (dict "slug" "series-b" "icon" "🏛" "title" "制度と社会保障" "desc" "使える制度、使われない制度、なぜ届かないのか")
+    (dict "slug" "series-c" "icon" "🔍" "title" "貧困の構造" "desc" "大人の自己肯定感、連鎖のメカニズム、現場からの仮説")
+    (dict "slug" "series-d" "icon" "🗺" "title" "社会資源マップ" "desc" "県内にある学習支援・福祉・地域資源の紹介")
+    (dict "slug" "series-e" "icon" "📝" "title" "現場ノート" "desc" "日々の相談・気づき・佐渡山の仮説")
+    (dict "slug" "series-f" "icon" "🎙" "title" "話して残す、沖縄の記憶" "desc" "高齢者の語りから見える戦後・暮らし・家族の記憶")
+  }}
+  {{ range $seriesList }}
+  <a href="/{{ $.Site.Language.Lang }}/{{ .slug }}/" class="series-card">
+    <span class="series-icon">{{ .icon }}</span>
+    <span class="series-title">{{ .title }}</span>
+    <span class="series-desc">{{ .desc }}</span>
+  </a>
+  {{ end }}
+</div>
+
+<section class="latest-section">
+  <h2 class="section-title">最新記事</h2>
+  <div class="article-list">
+    {{ range first 10 .Site.RegularPages }}
+    {{ if ne .Section "" }}
+    <article class="article-card">
+      <div class="article-meta">
+        <span class="article-series">{{ .Section }}</span>
+        <span class="article-date">{{ .Date.Format "2006.01.02" }}</span>
+      </div>
+      <a href="{{ .RelPermalink }}" class="article-title">{{ .Title }}</a>
+      <p class="article-summary">{{ .Summary }}</p>
+    </article>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

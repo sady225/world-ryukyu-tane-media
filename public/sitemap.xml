@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://news.ryukyu-tane.com/ja/sitemap.xml</loc>
+    
+      <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://news.ryukyu-tane.com/en/sitemap.xml</loc>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://news.ryukyu-tane.com/es/sitemap.xml</loc>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://news.ryukyu-tane.com/pt/sitemap.xml</loc>
+    
+  </sitemap>
+  
+</sitemapindex>

@@ -1,0 +1,43 @@
+{{ define "main" }}
+<article class="single-article">
+  <header class="article-header">
+    <div class="article-meta">
+      <a href="/{{ $.Site.Language.Lang }}/{{ .Section }}/" class="article-series-link">{{ .Section }}</a>
+      {{ with .Params.episode }}<span class="article-ep">第{{ . }}話</span>{{ end }}
+      <span class="article-date">{{ .Date.Format "2006年01月02日" }}</span>
+    </div>
+    <h1 class="article-h1">{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="article-subtitle">{{ . }}</p>{{ end }}
+    <div class="lang-switch">
+      {{ range .Translations }}
+      <a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>
+      {{ end }}
+    </div>
+  </header>
+
+  {{ with .Params.video_url }}
+  <div class="video-wrap">
+    <iframe src="{{ . }}" frameborder="0" allowfullscreen></iframe>
+  </div>
+  {{ end }}
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="article-footer">
+    <div class="author-box">
+      <div class="author-info">
+        <span class="author-name">佐渡山 要 / Kaname Sadoyama</span>
+        <span class="author-role">株式会社琉球のタネ 代表 / アルパカすく〜る</span>
+        <p class="author-note">※本記事は現場経験に基づく仮説・考察です。調査研究による実証ではありません。</p>
+      </div>
+    </div>
+    {{ with .Params.tags }}
+    <div class="article-tags">
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </footer>
+</article>
+{{ end }}

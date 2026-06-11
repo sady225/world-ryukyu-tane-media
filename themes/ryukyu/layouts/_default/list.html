@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="list-header">
+  <h1 class="list-title">{{ .Title }}</h1>
+  {{ with .Description }}<p class="list-desc">{{ . }}</p>{{ end }}
+  <p class="list-count">{{ len .Pages }}本</p>
+</div>
+<div class="article-list">
+  {{ range .Pages }}
+  <article class="article-card">
+    <div class="article-meta">
+      <span class="article-date">{{ .Date.Format "2006.01.02" }}</span>
+      {{ with .Params.episode }}<span class="article-ep">第{{ . }}話</span>{{ end }}
+    </div>
+    <a href="{{ .RelPermalink }}" class="article-title">{{ .Title }}</a>
+    <p class="article-summary">{{ .Summary }}</p>
+    {{ with .Params.tags }}
+    <div class="article-tags">
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </article>
+  {{ end }}
+</div>
+{{ end }}
