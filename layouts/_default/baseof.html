@@ -68,23 +68,28 @@
   </footer>
   
   <script>
-    const sizes = [14, 16, 18, 20];
-    let sizeIdx = parseInt(localStorage.getItem('fontSize') || '1');
-    applySize();
+    var sizes = [14, 16, 18, 20];
+    var sizeIdx = parseInt(localStorage.getItem('fontSize') || '1');
+
     function changeFontSize(dir) {
       if (dir === 0) sizeIdx = 1;
       else sizeIdx = Math.max(0, Math.min(sizes.length - 1, sizeIdx + dir));
-      applySize();
+      document.body.style.fontSize = sizes[sizeIdx] + 'px';
       localStorage.setItem('fontSize', sizeIdx);
     }
-    function applySize() { document.body.style.fontSize = sizes[sizeIdx] + 'px'; }
-    const savedTheme = localStorage.getItem('theme') || 'default';
-    applyTheme(savedTheme);
-    function changeTheme(theme) { applyTheme(theme); localStorage.setItem('theme', theme); }
-    function applyTheme(theme) { document.body.setAttribute('data-theme', theme); }
-    document.getElementById('uiToggle').addEventListener('click', () => {
+  
+    function changeTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+  
+    document.body.style.fontSize = sizes[sizeIdx] + 'px';
+    document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'default');
+
+    document.getElementById('uiToggle').addEventListener('click', function() {
       document.getElementById('uiPanel').classList.toggle('open');
     });
   </script>
+
   </body>
   </html>
