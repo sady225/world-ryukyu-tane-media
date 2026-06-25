@@ -431,3 +431,45 @@ a:hover { text-decoration: underline; }
   font-size: 11px;
   color: var(--text-s);
 }
+
+  /* ── テーマ変数 ── */
+  body[data-theme='dark'] {
+    --bg: #1a1a2e; --text: #e8e8e8; --text-s: #aaa; --border: #333; --card-bg: #252540;
+  }
+  body[data-theme='warm'] {
+    --bg: #fdf6ec; --text: #3d2b1f; --text-s: #7a5c3d; --border: #e8d5b7; --card-bg: #fdf0dc;
+  }
+
+  /* ── サイト切り替えフッター ── */
+  .site-switch { margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-s); }
+  .site-switch a { color: var(--text-s); }
+
+  /* ── 表示設定パネル ── */
+  .ui-controls { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; }
+  .ui-toggle {
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: var(--accent, #1a1a2e); color: #fff;
+    font-size: 1.2rem; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .ui-panel {
+    display: none; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem; margin-bottom: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); min-width: 160px;
+  }
+  .ui-panel.open { display: block; }
+  .ui-label { font-size: 0.75rem; color: var(--text-s); margin-bottom: 0.4rem; }
+  .ui-row { display: flex; gap: 0.4rem; margin-bottom: 0.8rem; }
+  .ui-row button {
+    flex: 1; padding: 0.3rem 0.4rem; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text); border-radius: 4px;
+    cursor: pointer; font-size: 0.8rem;
+  }
+  .ui-row button:hover { background: var(--accent, #1a1a2e); color: #fff; }
+  .theme-btn.default { background: #fff !important; color: #333 !important; }
+  .theme-btn.dark { background: #1a1a2e !important; color: #fff !important; }
+  .theme-btn.warm { background: #fdf6ec !important; color: #3d2b1f !important; }
+
+
+
+
