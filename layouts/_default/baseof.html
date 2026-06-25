@@ -1,45 +1,90 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-<meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="site-title">
-      <span class="logo-main">琉球のタネ</span>
-      <span class="logo-sub">Ryukyu no Tane</span>
-    </a>
-    <nav class="lang-nav">
-      <a href="/ja/" class="{{ if eq .Site.Language.Lang `ja` }}active{{ end }}">JP</a>
-      <a href="/en/" class="{{ if eq .Site.Language.Lang `en` }}active{{ end }}">EN</a>
-      <a href="/es/" class="{{ if eq .Site.Language.Lang `es` }}active{{ end }}">ES</a>
-      <a href="/pt/" class="{{ if eq .Site.Language.Lang `pt` }}active{{ end }}">PT</a>
+  <html lang="{{ .Site.Language.Lang }}">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" 
+  rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-title">
+        <span class="logo-main">琉球のタネ</span>
+        <span class="logo-sub">Ryukyu no Tane</span>
+      </a>
+      <nav class="lang-nav">
+        <a href="/ja/" class="{{ if eq .Site.Language.Lang `ja` }}active{{ end }}">JP</a>
+        <a href="/en/" class="{{ if eq .Site.Language.Lang `en` }}active{{ end }}">EN</a>
+        <a href="/es/" class="{{ if eq .Site.Language.Lang `es` }}active{{ end }}">ES</a>
+        <a href="/pt/" class="{{ if eq .Site.Language.Lang `pt` }}active{{ end }}">PT</a>
+      </nav>
+    </div>
+    <nav class="series-nav">
+      <a href="/{{ .Site.Language.Lang }}/series-a/">📚 子どもと学び</a>
+      <a href="/{{ .Site.Language.Lang }}/series-b/">🏛 制度と保障</a>
+      <a href="/{{ .Site.Language.Lang }}/series-c/">🔍 貧困の構造</a>
+      <a href="/{{ .Site.Language.Lang }}/series-d/">🗺 社会資源</a>
+      <a href="/{{ .Site.Language.Lang }}/series-e/">📝 現場ノート</a>
+      <a href="/{{ .Site.Language.Lang }}/series-f/">🎙 沖縄の記憶</a>
     </nav>
+  </header>
+
+  <div class="ui-controls">
+    <button class="ui-toggle" id="uiToggle" title="表示設定">⚙️ </button>
+    <div class="ui-panel" id="uiPanel">
+      <p class="ui-label">文字サイズ</p>
+      <div class="ui-row">
+        <button onclick="changeFontSize(-1)">A-</button>
+        <button onclick="changeFontSize(0)">標準</button>
+        <button onclick="changeFontSize(1)">A+</button>
+      </div>
+      <p class="ui-label">カラー</p>
+      <div class="ui-row">
+        <button onclick="changeTheme('default')" class="theme-btn default">標準</button>
+        <button onclick="changeTheme('dark')" class="theme-btn dark">ダーク</button>
+        <button onclick="changeTheme('warm')" class="theme-btn warm">温かみ</button>
+      </div>
+    </div>
   </div>
-  <nav class="series-nav">
-    <a href="/{{ .Site.Language.Lang }}/series-a/">📚 子どもと学び</a>
-    <a href="/{{ .Site.Language.Lang }}/series-b/">🏛 制度と保障</a>
-    <a href="/{{ .Site.Language.Lang }}/series-c/">🔍 貧困の構造</a>
-    <a href="/{{ .Site.Language.Lang }}/series-d/">🗺 社会資源</a>
-    <a href="/{{ .Site.Language.Lang }}/series-e/">📝 現場ノート</a>
-    <a href="/{{ .Site.Language.Lang }}/series-f/">🎙 沖縄の記憶</a>
-  </nav>
-</header>
-<main class="main-content">
-{{ block "main" . }}{{ end }}
-</main>
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-copy">© 2026 株式会社琉球のタネ / Ryukyu no Tane, Inc. — Naha, Okinawa, Japan</p>
-    <p class="footer-desc">沖縄の現場から見えるリアルを、世界へ届ける</p>
-  </div>
-</footer>
-</body>
-</html>
+  
+  <main class="main-content">
+  {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 株式会社琉球のタネ / Ryukyu no Tane, Inc. — Naha, Okinawa, Japan</p>
+      <p class="footer-desc">沖縄の現場から見えるリアルを、世界へ届ける</p>
+      <p class="site-switch">
+        現在：<strong>Hugo版</strong> ／
+        <a href="https://world2.ryukyu-tane.com/ja/">Astro版（試験中）に切り替える →</a>
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    const sizes = [14, 16, 18, 20];
+    let sizeIdx = parseInt(localStorage.getItem('fontSize') || '1');
+    applySize();
+    function changeFontSize(dir) {
+      if (dir === 0) sizeIdx = 1;
+      else sizeIdx = Math.max(0, Math.min(sizes.length - 1, sizeIdx + dir));
+      applySize();
+      localStorage.setItem('fontSize', sizeIdx);
+    }
+    function applySize() { document.body.style.fontSize = sizes[sizeIdx] + 'px'; }
+    const savedTheme = localStorage.getItem('theme') || 'default';
+    applyTheme(savedTheme);
+    function changeTheme(theme) { applyTheme(theme); localStorage.setItem('theme', theme); }
+    function applyTheme(theme) { document.body.setAttribute('data-theme', theme); }
+    document.getElementById('uiToggle').addEventListener('click', () => {
+      document.getElementById('uiPanel').classList.toggle('open');
+    });
+  </script>
+  </body>
+  </html>
